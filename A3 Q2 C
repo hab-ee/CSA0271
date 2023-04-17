@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int isPrime(int num) {
+    int i;
+    for(i = 2; i <= num/2; i++) {
+        if(num % i == 0) {
+            return 0; // Not a prime number
+        }
+    }
+    return 1; // Prime number
+}
+
+int main() {
+    int num, i, flag = 0;
+    printf("Enter a positive integer: ");
+    scanf("%d", &num);
+
+    for(i = 2; i <= num/2; i++) {
+        if(isPrime(i)) {
+            if(isPrime(num - i)) {
+                printf("%d = %d + %d\n", num, i, num - i);
+                flag = 1; // Number can be expressed as sum of two primes
+            }
+        }
+    }
+
+    if(flag == 0) {
+        printf("Number cannot be expressed as the sum of two prime numbers.\n");
+    }
+
+    return 0;
+}
